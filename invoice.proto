@@ -1,0 +1,23 @@
+syntax="proto3";
+option go_package = "demo/grpc/invoice";
+
+message Amount{
+    int64 amount = 1;
+    string currency = 2;
+}
+
+message CreateRequest{
+    Amount amount = 1;
+    string from = 2;
+    string to = 3;
+    string VATnumber = 4;
+}
+
+message CreateResponse{
+    bytes pdf = 1;
+    bytes docx = 2;
+}
+
+service Invoice{
+    rpc Create(CreateRequest) returns (CreateResponse);
+}
